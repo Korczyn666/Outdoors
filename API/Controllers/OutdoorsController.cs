@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -17,15 +19,18 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<User>>> GetUsersTest()
+        public async Task<ActionResult<List<AppUser>>> GetUsers()
         {
             return await _context.Users.ToListAsync();
         }
+
+        
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<AppUser>> GetUser(string id)
         {
             //FindAsync(id)
             return await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
         }
+
     }
 }
