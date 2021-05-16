@@ -88,9 +88,10 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Popularity", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer")
+                        .UseIdentityByDefaultColumn();
 
                     b.Property<string>("PlaceToVisit")
                         .HasColumnType("text");
@@ -102,9 +103,10 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Rating", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer")
+                        .UseIdentityByDefaultColumn();
 
                     b.Property<string>("Comment")
                         .HasColumnType("text");
@@ -116,9 +118,10 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Trail", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer")
+                        .UseIdentityByDefaultColumn();
 
                     b.Property<string>("Country")
                         .HasColumnType("text");
@@ -132,11 +135,11 @@ namespace Persistence.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("PopularityId")
-                        .HasColumnType("uuid");
+                    b.Property<int?>("PopularityId")
+                        .HasColumnType("integer");
 
-                    b.Property<Guid?>("RatingId")
-                        .HasColumnType("uuid");
+                    b.Property<int?>("RatingId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 

@@ -44,7 +44,11 @@ namespace API
             services.AddDbContext<OutdoorsContext>(options =>
                  options.UseNpgsql(_config.GetConnectionString("OutdoorsConnection"))
             );
-
+            services.AddCors( opt => {
+                opt.AddPolicy("CorsPolicy", policy => {
+                    policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000");
+                });
+            });
             services.AddIdentityServices(_config);
 
         }
@@ -62,6 +66,8 @@ namespace API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("CorsPolicy");
 
             app.UseAuthentication();
 

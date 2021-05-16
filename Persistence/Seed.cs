@@ -25,14 +25,20 @@ namespace Persistence
             }
            // return null;
         }
-        // public async Task SeedTrails(OutdoorsContext context, Trail trail){
+        // public static async Task SeedTrails(OutdoorsContext context){
         //     if(context.Trails.Any())
         //     {
         //          var trails = new List<Trail>
         //          {
-        //              new Trail{Name = "Góry stołowe", Country = "Polska", Diffculty = 5,  },
-
+        //              new Trail{Name = "Góry stołowe", Country = "Polska", Diffculty = 2 },
+        //              new Trail{Name = "Tatry", Country = "Polska", Diffculty = 3 },
+        //              new Trail{Name = "Caminito del rey", Country = "Hiszpania", Diffculty = 4 },
         //          };
+        //          foreach(var el in trails)
+        //          {
+        //             await context.Trails.AddAsync(el);
+        //          }
+        //          //context.SaveChangesAsync();
         //     }
         // }
     }

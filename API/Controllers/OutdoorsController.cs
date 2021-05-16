@@ -10,6 +10,7 @@ using Persistence;
 
 namespace API.Controllers
 {
+    [AllowAnonymous]
     public class OutdoorsController : BaseApiController
     {
         private readonly OutdoorsContext _context;
@@ -18,19 +19,19 @@ namespace API.Controllers
             _context = context;
         }
 
+
         [HttpGet]
-        public async Task<ActionResult<List<AppUser>>> GetUsers()
+        public async Task<ActionResult<List<Trail>>> GetTrails()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Trails.ToListAsync();
         }
 
         
-        [HttpGet("{id}")]
-        public async Task<ActionResult<AppUser>> GetUser(string id)
-        {
-            //FindAsync(id)
-            return await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
-        }
+         [HttpGet("{id}")]
+         public async Task<ActionResult<Trail>> GetTrail(int id)
+         {
+             return await _context.Trails.FirstOrDefaultAsync( u => u.Id == id);
+         }
 
     }
 }

@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Persistence.Migrations
 {
@@ -11,7 +11,8 @@ namespace Persistence.Migrations
                 name: "Popularity",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     PlaceToVisit = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
@@ -23,7 +24,8 @@ namespace Persistence.Migrations
                 name: "Ratings",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Comment = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
@@ -35,13 +37,14 @@ namespace Persistence.Migrations
                 name: "Trails",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: true),
                     Country = table.Column<string>(type: "text", nullable: true),
                     Diffculty = table.Column<int>(type: "integer", nullable: false),
                     Distance = table.Column<int>(type: "integer", nullable: true),
-                    RatingId = table.Column<Guid>(type: "uuid", nullable: true),
-                    PopularityId = table.Column<Guid>(type: "uuid", nullable: true)
+                    RatingId = table.Column<int>(type: "integer", nullable: true),
+                    PopularityId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
