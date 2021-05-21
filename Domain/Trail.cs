@@ -13,6 +13,7 @@ namespace Domain
         public int? Distance { get; set; }
         public int? RatingId { get; set; }
         public int? PopularityId { get; set; }
+        public string ImageTitle { get; set; }  
         
     }
 }

@@ -17,6 +17,9 @@ using API.Extensions;
 using API.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using MediatR;
+using Application;
+using Application.Core;
 
 namespace API
 {
@@ -26,6 +29,7 @@ namespace API
         public Startup(IConfiguration config)
         {
             _config = config;
+            
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -36,21 +40,8 @@ namespace API
                 var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
                 opt.Filters.Add(new AuthorizeFilter(policy));
             });
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
-            });
-
-            services.AddDbContext<OutdoorsContext>(options =>
-                 options.UseNpgsql(_config.GetConnectionString("OutdoorsConnection"))
-            );
-            services.AddCors( opt => {
-                opt.AddPolicy("CorsPolicy", policy => {
-                    policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000");
-                });
-            });
-            services.AddIdentityServices(_config);
-
+            
+            services.AddAplicationServices(_config);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
