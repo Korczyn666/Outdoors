@@ -1,22 +1,24 @@
-import React from 'react';
-import { Button, Container, Menu } from 'semantic-ui-react';
-import '../../styles/navbar.css'
-
-
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { Button, Container, Menu } from "semantic-ui-react";
+import "../../styles/navbar.css";
 
 export default function Navbar() {
-    return (
-        <Menu inverted fixed='top' >
-            <Container>
-                <Menu.Item header>
-                    <img src='/assets/tree.png' alt='logo' style={{marginRight: '10px'}}/>
-                    Outdoors
-                </Menu.Item>
-                <Menu.Item name='Szlaki'/>
-                <Menu.Item>
-                    <Button positive content='Sklep' />
-                </Menu.Item>
-            </Container>
-        </Menu>
-    )
+  return (
+    <Menu inverted fixed="top">
+      <Container>
+        <Menu.Item as={NavLink} to="/homepage" exact header>
+          <img
+            src="/assets/tree.png"
+            alt="logo"
+            style={{ marginRight: "10px" }}
+          />
+          Outdoors
+        </Menu.Item>
+        <Menu.Item as={NavLink} to="/trails" exact name="Szlaki" />  
+        <Menu.Item  as={NavLink} to="/shop" exact positive content="Sklep" />
+        <Menu.Item as={NavLink} to="/" exact name="Logowanie" floated/>
+      </Container>
+    </Menu>
+  );
 }

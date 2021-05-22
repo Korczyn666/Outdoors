@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
 import { Button, Item, Segment } from "semantic-ui-react";
 import { Trail } from "../../../app/models/trail";
 import { useStore } from "../../../app/stores/store";
@@ -33,7 +34,7 @@ export default function TrailList(props: Props) {
                 {renderStar(trail.diffculty)}
               </Item.Description>
               <Item.Extra>
-                <Button onClick={() => { trailStore.selectTrail(trail.id)}} floated="right" content="Zobacz szlak" color="green" />
+                <Button as={Link} to ={`/trails/${trail.id}`} floated="right" content="Zobacz szlak" color="green" />
               </Item.Extra>
             </Item.Content>
           </Item>

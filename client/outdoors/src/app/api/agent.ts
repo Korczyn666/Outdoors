@@ -35,7 +35,8 @@ const requests = {
 }
 
 const Trails = {
-    list: () => requests.get<Trail[]>('/outdoors')
+    list: () => requests.get<Trail[]>('/outdoors'),
+    details: (id: number) => requests.get<Trail>(`/outdoors/${id}`),
 }
 
 const agent = {

@@ -19,10 +19,11 @@ export default class TrailStore {
 
 
   loadTrails = async () => {
+    this.loadingInitial = true;
     try {
       const trails = await agent.Trails.list();
       trails.forEach((trail) => {
-        this.trailRegistry.set(trail.id,trail);
+        this.setTrail(trail);
       });
       this.setLoadingInitial(false);
     } catch (error) {
@@ -31,15 +32,37 @@ export default class TrailStore {
     }
   };
 
+  loadTrail = async (id: number) => {
+    let trail = this.getTrail(id);
+    if(trail){
+      this.selectedTrail = trail;
+    }else{
+      this.loadingInitial = true;
+      try {
+        trail = await agent.Trails.details(id);
+        this.setTrail(trail);
+        this.selectedTrail = trail ?? undefined;
+        this.setLoadingInitial(false);
+      } catch (error) {
+        console.log(error);
+        this.setLoadingInitial(false);    
+      }
+    }
+  }
+
+  private getTrail = (id: number) => {
+    return this.trailRegistry.get(id);
+  }
+
+  private setTrail = (trail: Trail) => {
+    this.trailRegistry.set(trail.id,trail);
+  }
+
+
+
   setLoadingInitial = (state: boolean) => {
     this.loadingInitial = state;
   };
 
-
-  selectTrail = (id: number) => {
-      this.selectedTrail = this.trailRegistry.get(id);
-  }
-  cancelSelectedTrail = () => { 
-    this.selectedTrail = undefined;
-  }
+  
 }

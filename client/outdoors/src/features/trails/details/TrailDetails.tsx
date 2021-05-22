@@ -1,11 +1,19 @@
-import React from "react";
+import { observer } from "mobx-react-lite";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { Button, Card, Image } from "semantic-ui-react";
 import LoadingIndicator from "../../../app/layout/LoadingIndicator";
 import { useStore } from "../../../app/stores/store";
 
-export default function TrailDetails()  {
+export default observer(function TrailDetails()  {
   const { trailStore } = useStore();
-  const { selectedTrail: trail } = trailStore;
+  const { selectedTrail: trail , loadTrail, loadingInitial} = trailStore;
+  const {id} = useParams<{id: string}>();
+
+
+  useEffect(() => {
+    if(id) { loadTrail(Number(id)); }
+  },[id, loadTrail]);
 
 
   const renderStar = (item: any) => {
@@ -16,7 +24,7 @@ export default function TrailDetails()  {
     return star;
   };
 
-if(!trail) return <LoadingIndicator />
+if(loadingInitial || !trail) return <LoadingIndicator />
 
   return (
     <Card fluid>
@@ -32,7 +40,6 @@ if(!trail) return <LoadingIndicator />
         <Button.Group widths="2">
           <Button basic color="green" content="Zobacz więcej" />
           <Button
-            onClick={trailStore.cancelSelectedTrail}
             basic
             color="grey"
             content="Zamknij"
@@ -41,4 +48,4 @@ if(!trail) return <LoadingIndicator />
       </Card.Content>
     </Card>
   );
-}
+});
