@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { Grid} from "semantic-ui-react";
 import LoadingIndicator from "../../../app/layout/LoadingIndicator";
 import { useStore } from "../../../app/stores/store";
+import TrailFilters from "./TrailFilters";
 import TrailList from "./TrailList";
 
 
@@ -26,7 +27,7 @@ export default observer(function TrailDashboard() {
         <TrailList trails={trailStore.trails} />
       </Grid.Column>
       <Grid.Column width='6'>
-       <h2>Filtry</h2>
+       <TrailFilters/>
       </Grid.Column>
     </Grid>
   );

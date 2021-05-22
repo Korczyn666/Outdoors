@@ -1,3 +1,23 @@
-
+.masthead {
+    display: flex;
+    align-items: center;
+    background-image: linear-gradient(to right, #7ed56f, #28b485) !important;
+    height: 100vh;
+  }
+  
+  .masthead .ui.menu .ui.button,
+  .ui.menu a.ui.inverted.button {
+    margin-left: 0.5em;
+  }
+  
+  .masthead h1.ui.header {
+    font-size: 4em;
+    font-weight: normal;
+  }
+  
+  .masthead h2 {
+    font-size: 1.7em;
+    font-weight: normal;
+  }
 
 
