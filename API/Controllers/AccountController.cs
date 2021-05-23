@@ -46,11 +46,13 @@ namespace API.Controllers
         {
             if(await _userManager.Users.AnyAsync( x => x.Email == registerDto.Email))
             {
-                return BadRequest("Email jest zajęty");
+                ModelState.AddModelError("email", "Email zajęty");
+                return ValidationProblem();
             }
             if(await _userManager.Users.AnyAsync( x => x.UserName == registerDto.Username))
             {
-                return BadRequest("Nazwa użytkownika zajęta");
+                ModelState.AddModelError("username", "Nazwa użytkownika zajęta");
+                return ValidationProblem();
             }
             var user = new AppUser {
                 DisplayName = registerDto.DisplayName,
@@ -58,7 +60,7 @@ namespace API.Controllers
                 UserName = registerDto.Username,
             };
 
-            var result = await _userManager.CreateAsync(user);
+            var result = await _userManager.CreateAsync(user, registerDto.Password);
 
             if(result.Succeeded)
             {
