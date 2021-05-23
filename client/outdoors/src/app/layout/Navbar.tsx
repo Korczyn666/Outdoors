@@ -18,6 +18,7 @@ export default function Navbar() {
         <Menu.Item as={NavLink} to="/trails" exact name="Szlaki" />  
         <Menu.Item  as={NavLink} to="/shop" exact positive content="Sklep" />
         <Menu.Item as={NavLink} to="/" exact name="Logowanie" floated/>
+        <Menu.Item as={NavLink} to="/errors" exact name="Testowanie błędów" />  
       </Container>
     </Menu>
   );

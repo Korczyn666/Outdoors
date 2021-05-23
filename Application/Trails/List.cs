@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Core;
 using Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -10,9 +11,9 @@ namespace Application
 {
     public class List
     {
-        public class Query : IRequest<List<Trail>> { }
+        public class Query : IRequest<Result<List<Trail>>> { }
 
-        public class Handler : IRequestHandler<Query, List<Trail>>
+        public class Handler : IRequestHandler<Query, Result<List<Trail>>>
         {
             private readonly OutdoorsContext _context;
             public Handler(OutdoorsContext context)
@@ -20,9 +21,9 @@ namespace Application
                 _context = context;
             }
 
-            public async  Task<List<Trail>> Handle(Query request, CancellationToken cancellationToken)
+            public async  Task<Result<List<Trail>>> Handle(Query request, CancellationToken cancellationToken)
             {
-               return await _context.Trails.ToListAsync();
+               return Result<List<Trail>>.Success( await _context.Trails.ToListAsync());
             }
         }
     }

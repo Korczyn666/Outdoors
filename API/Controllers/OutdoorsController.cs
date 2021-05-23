@@ -16,16 +16,18 @@ namespace API.Controllers
     public class OutdoorsController : BaseApiController
     {
         [HttpGet]
-        public async Task<ActionResult<List<Trail>>> GetTrails()
+        public async Task<IActionResult> GetTrails()
         {
-            return await Mediator.Send(new List.Query());
+            return HandleResult(await Mediator.Send(new List.Query()));
         }
 
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Trail>> GetTrail(int id)
+        public async Task<IActionResult> GetTrail(int id)
         {
-            return await Mediator.Send(new Details.Query{Id = id});
+            var result = await Mediator.Send(new Details.Query{Id = id});
+
+            return HandleResult(result);
         }
 
     }
