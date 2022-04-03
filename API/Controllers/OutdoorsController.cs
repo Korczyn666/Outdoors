@@ -1,34 +1,42 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using API.Helpers.Models;
+using API.Interfaces;
 using Application;
-using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
+using Persistence.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace API.Controllers
 {
     [AllowAnonymous]
     public class OutdoorsController : BaseApiController
     {
-        [HttpGet]
-        public async Task<IActionResult> GetTrails()
+        private readonly IOutdoorsService _outdoorsService;
+        private readonly IRecomendationService _recomendationService;
+
+        public OutdoorsController(IOutdoorsService outdoorsService, IRecomendationService recomendationService)
         {
-            return HandleResult(await Mediator.Send(new List.Query()));
+            _outdoorsService = outdoorsService;
+            _recomendationService = recomendationService;
+        }
+        [HttpGet]
+        public List<Trail> GetTrails()
+        {
+            return _outdoorsService.GetTrails();
         }
 
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetTrail(int id)
+        public TrailModel GetTrail(int id)
         {
-            var result = await Mediator.Send(new Details.Query{Id = id});
-
-            return HandleResult(result);
+            var recommendedProducts = _recomendationService.RecommendProductsFromDataset(id);
+            return _outdoorsService.GetTrail(id, recommendedProducts);
         }
-
     }
 }

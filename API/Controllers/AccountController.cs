@@ -1,5 +1,3 @@
-using System.Security.Claims;
-using System.Threading.Tasks;
 using API.DTO;
 using API.Services;
 using Domain;
@@ -7,6 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace API.Controllers
 {
@@ -36,7 +36,7 @@ namespace API.Controllers
 
             if (result.Succeeded)
             {
-               return CreateUserObject(user);
+                return CreateUserObject(user);
             }
 
             return Unauthorized();
@@ -44,17 +44,18 @@ namespace API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
-            if(await _userManager.Users.AnyAsync( x => x.Email == registerDto.Email))
+            if (await _userManager.Users.AnyAsync(x => x.Email == registerDto.Email))
             {
                 ModelState.AddModelError("email", "Email zajęty");
                 return ValidationProblem();
             }
-            if(await _userManager.Users.AnyAsync( x => x.UserName == registerDto.Username))
+            if (await _userManager.Users.AnyAsync(x => x.UserName == registerDto.Username))
             {
                 ModelState.AddModelError("username", "Nazwa użytkownika zajęta");
                 return ValidationProblem();
             }
-            var user = new AppUser {
+            var user = new AppUser
+            {
                 DisplayName = registerDto.DisplayName,
                 Email = registerDto.Email,
                 UserName = registerDto.Username,
@@ -62,7 +63,7 @@ namespace API.Controllers
 
             var result = await _userManager.CreateAsync(user, registerDto.Password);
 
-            if(result.Succeeded)
+            if (result.Succeeded)
             {
                 return CreateUserObject(user);
             }
@@ -82,11 +83,12 @@ namespace API.Controllers
 
         private UserDto CreateUserObject(AppUser user)
         {
-            return new UserDto {
-                    DisplayName = user.DisplayName,
-                    Image = null,
-                    Token = _tokenService.CreateToken(user),
-                    Username = user.UserName
+            return new UserDto
+            {
+                DisplayName = user.DisplayName,
+                Image = null,
+                Token = _tokenService.CreateToken(user),
+                Username = user.UserName
             };
         }
     }

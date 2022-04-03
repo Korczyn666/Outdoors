@@ -1,6 +1,4 @@
-using Application;
 using Application.Core;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,14 +20,16 @@ namespace API.Extensions
             services.AddDbContext<OutdoorsContext>(options =>
                  options.UseNpgsql(config.GetConnectionString("OutdoorsConnection"))
             );
-            services.AddCors( opt => {
-                opt.AddPolicy("CorsPolicy", policy => {
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("CorsPolicy", policy =>
+                {
                     policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000");
                 });
             });
-            services.AddMediatR( typeof(List.Handler).Assembly);
+            // services.AddMediatR( typeof(List.Handler).Assembly);
             services.AddAutoMapper(typeof(MappingProfiles).Assembly);
-            services.AddIdentityServices(config); 
+            services.AddIdentityServices(config);
 
             return services;
         }

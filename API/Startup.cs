@@ -21,6 +21,7 @@ using MediatR;
 using Application;
 using Application.Core;
 using API.Middleware;
+using API.Helpers;
 
 namespace API
 {
@@ -43,6 +44,7 @@ namespace API
             });
             
             services.AddAplicationServices(_config);
+            AppScope.AddScope(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

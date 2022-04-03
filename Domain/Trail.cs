@@ -14,6 +14,7 @@ namespace Domain
         public int? RatingId { get; set; }
         public int? PopularityId { get; set; }
         public string ImageTitle { get; set; }  
+        public string Description { get; set; }
         
     }
 }

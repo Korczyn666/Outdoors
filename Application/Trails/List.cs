@@ -11,20 +11,20 @@ namespace Application
 {
     public class List
     {
-        public class Query : IRequest<Result<List<Trail>>> { }
+        // public class Query : IRequest<Result<List<Trail>>> { }
 
-        public class Handler : IRequestHandler<Query, Result<List<Trail>>>
-        {
-            private readonly OutdoorsContext _context;
-            public Handler(OutdoorsContext context)
-            {
-                _context = context;
-            }
+        // public class Handler : IRequestHandler<Query, Result<List<Trail>>>
+        // {
+        //     private readonly OutdoorsContext _context;
+        //     public Handler(OutdoorsContext context)
+        //     {
+        //         _context = context;
+        //     }
 
-            public async  Task<Result<List<Trail>>> Handle(Query request, CancellationToken cancellationToken)
-            {
-               return Result<List<Trail>>.Success( await _context.Trails.ToListAsync());
-            }
-        }
+        //     public async  Task<Result<List<Trail>>> Handle(Query request, CancellationToken cancellationToken)
+        //     {
+        //        return Result<List<Trail>>.Success( await _context.Trails.ToListAsync());
+        //     }
+        // }
     }
 }

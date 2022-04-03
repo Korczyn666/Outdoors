@@ -2,6 +2,7 @@ import { observer } from "mobx-react-lite";
 import React from "react";
 import { Link } from "react-router-dom";
 import { Container, Header, Segment, Image, Button } from "semantic-ui-react";
+import agent from "../../app/api/agent";
 import { useStore } from "../../app/stores/store";
 import LoginForm from "../users/LoginForm";
 import RegisterForm from "../users/RegisterForm";
@@ -22,7 +23,7 @@ export default observer(function LoginPage() {
         </Header>
         {userStore.isLoggedIn ? (
           <>
-            <Header as="h2" inverted content="Witamy!"></Header>
+            <Header as="h2" inverted content={`Witaj ${userStore.user?.displayName} !`}></Header>
             <Button as={Link} to="/trails" size="huge" inverted>
               {" "}
               Zobacz szlaki

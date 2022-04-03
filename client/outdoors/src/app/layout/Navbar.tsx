@@ -9,10 +9,18 @@ export default observer(function Navbar() {
   const {
     userStore: { user, logout },
   } = useStore();
+
+  const redirect = () => {
+    window.location.replace("http://localhost:16592");
+  }
+  const homePageOld = () => {
+    window.location.replace("http://127.0.0.1:8080");
+  }
+
   return (
     <Menu inverted fixed="top">
       <Container>
-        <Menu.Item as={NavLink} to="/homepage" exact header>
+        <Menu.Item as={NavLink} to="/" exact header>
           <img
             src="/assets/tree.png"
             alt="logo"
@@ -21,9 +29,9 @@ export default observer(function Navbar() {
           Outdoors
         </Menu.Item>
         <Menu.Item as={NavLink} to="/trails" exact name="Szlaki" />
-        <Menu.Item as={NavLink} to="/shop" exact positive content="Sklep" />
-        <Menu.Item as={NavLink} to="/" exact name="Logowanie" floated />
-        <Menu.Item as={NavLink} to="/errors" exact name="Testowanie błędów" />
+        <Menu.Item onClick={redirect} exact positive content="Sklep" />
+        <Menu.Item onClick={homePageOld} exact positive content="Strona startowa prototyp" />
+        {/* <Menu.Item as={NavLink} to="/errors" exact name="Testowanie błędów" /> */}
         <Menu.Item position="right">
           <Image
             src={user?.image || "/assets/user.png"}

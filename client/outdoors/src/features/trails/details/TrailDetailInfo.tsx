@@ -47,7 +47,7 @@ export default observer(function TrailDetailInfo({trail}: Props) {
                         <Icon name='info' size='large' color='green'/>
                     </Grid.Column>
                     <Grid.Column width={11}>
-                        <span>Opis</span>
+                        <span>{trail.description}</span>
                     </Grid.Column>
                 </Grid>
             </Segment>

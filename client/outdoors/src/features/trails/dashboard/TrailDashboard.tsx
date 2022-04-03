@@ -27,7 +27,7 @@ export default observer(function TrailDashboard() {
         <TrailList trails={trailStore.trails} />
       </Grid.Column>
       <Grid.Column width='6'>
-       <TrailFilters/>
+       <TrailFilters />
       </Grid.Column>
     </Grid>
   );

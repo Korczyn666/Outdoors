@@ -1,0 +1,1 @@
+dotnet ef dbcontext scaffold "User ID = outdoors_admin;Password=dupsko123;Server=localhost;Port=5432;Database=Outdoors;Integrated Security=true; Pooling=true;" Npgsql.EntityFrameworkCore.PostgreSQL -o Models

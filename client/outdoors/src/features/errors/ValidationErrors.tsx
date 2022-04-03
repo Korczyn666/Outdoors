@@ -9,6 +9,7 @@ interface Props{
 
 
 export default function ValidationErrors({errors} : Props) {
+    errors = Array.from(errors);
     return (
         <Message error>
             {errors && (

@@ -32,6 +32,14 @@ export default class UserStore {
         this.user = null;
         history.push('/');
     }
+    getUserDisplayName = async () => {
+        try {
+            const user =  await agent.Account.current();
+            return user.displayName;
+        } catch (error) {
+            console.log(error);   
+        }
+    }
     getUser = async () => {
         try {
             const user = await agent.Account.current();

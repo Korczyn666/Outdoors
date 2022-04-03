@@ -43,7 +43,7 @@ function App() {
             <Navbar />
             <Container style={{ marginTop: "7em" }}>
               <Switch>
-                <Route exact path="/homepage" component={HomePage} />
+                {/* <Route exact path="/homepage" component={HomePage} /> */}
                 <Route exact path="/trails" component={TrailDashboard} />
                 <Route exact path="/trails/:id" component={TrailDetails} />
                 <Route exact path="/shop" component={Shop} />
