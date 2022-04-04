@@ -11,11 +11,11 @@ export default observer(function Navbar() {
   } = useStore();
 
   const redirect = () => {
-    window.location.replace("http://localhost:16592");
-  }
+    window.location.replace("http://localhost:4200");
+  };
   const homePageOld = () => {
     window.location.replace("http://127.0.0.1:8080");
-  }
+  };
 
   return (
     <Menu inverted fixed="top">
@@ -30,7 +30,12 @@ export default observer(function Navbar() {
         </Menu.Item>
         <Menu.Item as={NavLink} to="/trails" exact name="Szlaki" />
         <Menu.Item onClick={redirect} exact positive content="Sklep" />
-        <Menu.Item onClick={homePageOld} exact positive content="Strona startowa prototyp" />
+        {/* <Menu.Item
+          onClick={homePageOld}
+          exact
+          positive
+          content="Strona startowa prototyp"
+        /> */}
         {/* <Menu.Item as={NavLink} to="/errors" exact name="Testowanie błędów" /> */}
         <Menu.Item position="right">
           <Image

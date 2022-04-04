@@ -10,5 +10,6 @@ namespace API.Helpers.Models
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public string ProductNameCut { get; set; }
+        public string Redirect { get; set; }
     }
 }

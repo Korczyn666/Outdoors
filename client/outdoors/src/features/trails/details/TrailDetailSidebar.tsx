@@ -42,7 +42,15 @@ export default observer(function TrailDetailSidebar({ trail }: Props) {
               <Item.Header as="h3">
                 <Item style={{ color: "grey" }}>Produkt</Item>
               </Item.Header>
-              <Item.Extra as={Link} to={`#`} style={{ color: "green" }}>
+              <Item.Extra
+                as={Link}
+                onClick={() => {
+                  window.location.replace(
+                    `${trail.recomendedProducts[0].redirect}`
+                  );
+                }}
+                style={{ color: "green" }}
+              >
                 {trail.recomendedProducts[0].productName}
               </Item.Extra>
             </Item.Content>
@@ -60,7 +68,15 @@ export default observer(function TrailDetailSidebar({ trail }: Props) {
               <Item.Header as="h3">
                 <Item style={{ color: "grey" }}>Produkt</Item>
               </Item.Header>
-              <Item.Extra as={Link} to={`#`} style={{ color: "green" }}>
+              <Item.Extra
+                as={Link}
+                onClick={() => {
+                  window.location.replace(
+                    `${trail.recomendedProducts[1].redirect}`
+                  );
+                }}
+                style={{ color: "green" }}
+              >
                 {trail.recomendedProducts[1].productName}
               </Item.Extra>
             </Item.Content>
@@ -78,7 +94,15 @@ export default observer(function TrailDetailSidebar({ trail }: Props) {
               <Item.Header as="h3">
                 <Item style={{ color: "grey" }}>Produkt</Item>
               </Item.Header>
-              <Item.Extra as={Link} to={`#`} style={{ color: "green" }}>
+              <Item.Extra
+                as={Link}
+                onClick={() => {
+                  window.location.replace(
+                    `${trail.recomendedProducts[2].redirect}`
+                  );
+                }}
+                style={{ color: "green" }}
+              >
                 {trail.recomendedProducts[2].productName}
               </Item.Extra>
             </Item.Content>

@@ -92,7 +92,8 @@ namespace API.Services
                     {
                         ProductId = product.ProductId,
                         ProductName = productDb.Name ?? string.Empty,
-                        ProductNameCut = nameCut
+                        ProductNameCut = nameCut,
+                        Redirect = productDb.Redirect
                     });
                 }
 

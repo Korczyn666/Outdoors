@@ -25,6 +25,7 @@ export default function TrailListItem({ trail }: Props) {
         <Image
           size="massive"
           src={`/assets/trailsImages/${trail.imageTitle}.jpg`}
+          centered
         />
       </Segment>
       <Segment>
@@ -35,9 +36,11 @@ export default function TrailListItem({ trail }: Props) {
               <Item.Header as={Link} to={`/trails/${trail.id}`}>
                 {trail.name}
               </Item.Header>
-              <Item.Description floated="center">{trail.country}</Item.Description>
+              <Item.Description floated="center">
+                {trail.country}
+              </Item.Description>
               <span>
-                <Item.Description style={{marginTop: '10px'}}>
+                <Item.Description style={{ marginTop: "10px" }}>
                   {renderStar(trail.diffculty)}
                 </Item.Description>
               </span>

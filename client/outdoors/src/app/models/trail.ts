@@ -15,4 +15,5 @@ export interface RecomendedProduct {
   productId: number;
   productName: string;
   productNameCut: string;
+  redirect: string;
 }

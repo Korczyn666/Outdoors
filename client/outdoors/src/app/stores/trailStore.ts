@@ -14,9 +14,10 @@ export default class TrailStore {
   }
 
   get trailByName() {
-    return Array.from(this.trailRegistry.values()).sort((a, b) =>a.name.localeCompare(b.name));
+    return Array.from(this.trailRegistry.values()).sort((a, b) =>
+      a.name.localeCompare(b.name)
+    );
   }
-
 
   loadTrails = async () => {
     this.loadingInitial = true;
@@ -34,35 +35,27 @@ export default class TrailStore {
 
   loadTrail = async (id: number) => {
     let trail = this.getTrail(id);
-    if(trail){
-      this.selectedTrail = trail;
-    }else{
-      this.loadingInitial = true;
-      try {
-        trail = await agent.Trails.details(id);
-        this.setTrail(trail);
-        this.selectedTrail = trail ?? undefined;
-        this.setLoadingInitial(false);
-      } catch (error) {
-        console.log(error);
-        this.setLoadingInitial(false);    
-      }
+    this.loadingInitial = true;
+    try {
+      trail = await agent.Trails.details(id);
+      this.setTrail(trail);
+      this.selectedTrail = trail ?? undefined;
+      this.setLoadingInitial(false);
+    } catch (error) {
+      console.log(error);
+      this.setLoadingInitial(false);
     }
-  }
+  };
 
   private getTrail = (id: number) => {
     return this.trailRegistry.get(id);
-  }
+  };
 
   private setTrail = (trail: Trail) => {
-    this.trailRegistry.set(trail.id,trail);
-  }
-
-
+    this.trailRegistry.set(trail.id, trail);
+  };
 
   setLoadingInitial = (state: boolean) => {
     this.loadingInitial = state;
   };
-
-  
 }
